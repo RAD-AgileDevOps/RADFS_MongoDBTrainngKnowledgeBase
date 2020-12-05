@@ -1,0 +1,25 @@
+
+"C:\wamp64\www\mongodb_tutorial\primer-dataset.json"
+
+"C:\wamp64\www\mongodb_tutorial\zips.json"
+
+mongoimport --db test --collection C:\Users\radfi\OneDrive\Desktop\zips.json --file zips.json --drop
+
+
+mongoimport --db test --collection zips --file C:\Users\radfi\OneDrive\Desktop\zips.json --drop
+
+$ mongoimport --db test --collection restaurants --file "C:\wamp64\www\mongodb_tutorial\primer-dataset.json" --drop
+
+
+
+mongoimport --db test --collection restaurants --file C:\wamp64\www\mongodb_tutorial\primer-dataset.json --drop
+
+
+
+mongoimport --db CORD19 --collection ecdc_download_20200527_2115 --file C:\wamp64\www\mongodb_tutorial\primer-dataset.json --drop
+
+
+
+ecdcCOVID19_20200531.json
+ecdcCOVID19_20200629.json
+mongoimport --db CORD19 --collection col_ecdcCOVID19_20200705 --file C:\Databases\MongoDB\ecdcCOVID19_20200705.json --drop
