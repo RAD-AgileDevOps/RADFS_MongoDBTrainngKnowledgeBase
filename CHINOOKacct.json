@@ -1,0 +1,53 @@
+{
+    "type": "table",
+    "database": null,
+    "name": "accounts",
+    "withoutRowId": true,
+    "ddl": "CREATE TABLE accounts ( \n    account_no INTEGER NOT NULL, \n    balance DECIMAL NOT NULL DEFAULT 0,\n    PRIMARY KEY(account_no),\n        CHECK(balance >= 0)\n);",
+    "columns": [
+        {
+            "name": "account_no",
+            "type": "INTEGER",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL"
+                }
+            ]
+        },
+        {
+            "name": "balance",
+            "type": "DECIMAL",
+            "constraints": [
+                {
+                    "type": "NOT NULL",
+                    "definition": "NOT NULL "
+                },
+                {
+                    "type": "DEFAULT",
+                    "definition": "DEFAULT 0"
+                }
+            ]
+        }
+    ],
+    "constraints": [
+        {
+            "type": "PRIMARY KEY",
+            "definition": "PRIMARY KEY(account_no)"
+        },
+        {
+            "type": "CHECK",
+            "definition": "CHECK(balance >= 0)\n"
+        }
+    ],
+    "rows": [
+        [
+            100,
+            19100
+        ],
+        [
+            200,
+            11100
+        ]
+    ]
+}

@@ -1,0 +1,8 @@
+{"_id":{"$numberInt":"1"},"subject":"coffee","author":"xyz","views":{"$numberInt":"50"}}
+{"_id":{"$numberInt":"2"},"subject":"Coffee Shopping","author":"efg","views":{"$numberInt":"5"}}
+{"_id":{"$numberInt":"3"},"subject":"Baking a cake","author":"abc","views":{"$numberInt":"90"}}
+{"_id":{"$numberInt":"4"},"subject":"baking","author":"xyz","views":{"$numberInt":"100"}}
+{"_id":{"$numberInt":"5"},"subject":"Café Con Leche","author":"abc","views":{"$numberInt":"200"}}
+{"_id":{"$numberInt":"6"},"subject":"Сырники","author":"jkl","views":{"$numberInt":"80"}}
+{"_id":{"$numberInt":"7"},"subject":"coffee and cream","author":"efg","views":{"$numberInt":"10"}}
+{"_id":{"$numberInt":"8"},"subject":"Cafe con Leche","author":"xyz","views":{"$numberInt":"10"}}
