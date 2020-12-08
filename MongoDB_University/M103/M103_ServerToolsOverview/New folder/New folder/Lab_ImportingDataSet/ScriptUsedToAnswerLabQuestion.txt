@@ -1,0 +1,3 @@
+
+
+mongoimport --port  27000 -u "m103-application-user" -p "m103-application-pass" --db applicationData --collection products --authenticationDatabase "admin"  "/dataset/products.json"

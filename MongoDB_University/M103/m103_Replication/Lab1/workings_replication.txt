@@ -1,0 +1,111 @@
+/*
+
+Date: 2020-11-14 14:51
+Description: The following are the workings that I have used to gain my Lab marks
+
+*/
+
+
+keyFile: /var/mongodb/pki/m103-keyfile
+
+replication:
+  replSetName: m103-repl
+
+
+
+/* changed owner ship to 'root'*/ 2020-11-15
+
+chown root /var/mongodb/pki/
+
+
+
+
+mongo --host "m103-example/192.168.103.100:27011" -u "m103-admin" -p "m103-pass" --authenticationDatabase "admin"
+
+
+2020-11-15 16:35
+
+Connecting to the Primary with correct configuration instead of a blind copy and paste from example
+m103-repl
+
+
+
+
+mongo  --host "m103-repl/localhost:27001" -u "m103-admin" -p "m103-pass" --authenticationDatabase "admin"
+
+adding the other 2 nodes to the replica
+rs.add("localhost:27002")
+rs.add("localhost:27003")
+
+2020-11-15 17:30
+-----------------
+Steps I adopted to solve the Lab {really challenging boy!!}:
+
+1        -----------------------------------------------------------------
+There are three configuration files in your IDE workspace, but they are incomplete.
+
+Update these configuration files so that all three mongod processes:
+
+authenticate internally using the keyfile /var/mongodb/pki/m103-keyfile
+belong to the replica set m103-repl
+
+solution : uptaed each of the conf files with :
+    
+      keyFile: /var/mongodb/pki/m103-keyfile
+
+      replication:
+        replSetName: m103-repl
+
+set neccesary permissions and other relatedd admin duties
+The reference I used is  - "https://university.mongodb.com/mercury/M103/2020_September_29/chapter/Chapter_2_Replication/lesson/5a9b45ca97182d4140a45eb3/lecture"
+
+chown root /var/mongodb/pki/                         
+openssl rand -base64 741 > /var/mongodb/pki/m103-keyfile
+bash-4.4# chmod 400 /var/mongodb/pki/m103-keyfile
+
+2 -------------------------------------------------------------------------
+Once your configuration files are complete, start a mongod process using one of them.
+
+solution:
+  mongod -f mongod_1.conf
+
+3.----------------------------------------------------------------------
+
+When this node is running, use the mongo shell to connect and initiate your replica set with rs.initiate(). The shell prompt will read PRIMARY when the election is complete
+
+solution:mongo localhost:27001
+
+------------------------------------------------------------------------
+4.Because the replica set uses a keyfile for internal authentication, clients must authenticate before performing any actions.
+
+use admin
+
+db.createUser({
+  user: "m103-admin",
+  pwd: "m103-pass",
+  roles: [
+    {role: "root", db: "admin"}
+  ]
+})
+
+-------------------------------------------------------------------------------------------------------
+
+5. Once m103-admin is created, exit the mongo shell and start the other two mongod processes with their respective configuration files.
+
+
+solution:
+  exit
+  mongod -f mongod_2.conf
+  mongod -f mongod_3.conf
+
+
+
+----------------------------------------------------------------------------------------
+6. Reconnect to your primary node as m103-admin and add the other two nodes to your replica set using rs.add().
+
+mongo admin --host m103-repl/localhost:27001 \
+            --username m103-admin --password m103-pass \
+            --eval 'rs.add("localhost:27002")
+                    rs.add("localhost:27003")'
+
+                    
