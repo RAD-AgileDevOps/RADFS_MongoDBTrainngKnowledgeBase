@@ -1,0 +1,117 @@
+Microsoft Windows [Version 10.0.18362.207]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\radfi> python37 venv hello_world
+python37: can't open file 'venv': [Errno 2] No such file or directory
+
+C:\Users\radfi> python37 -m venv hello_world
+Error: [WinError 2] The system cannot find the file specified
+
+C:\Users\radfi> python37 -m venv C:\Users\radfi\hello_world
+Error: [WinError 2] The system cannot find the file specified
+
+C:\Users\radfi>python37 -m venv C:\Users\radfi\hello_world
+Error: [WinError 2] The system cannot find the file specified
+
+C:\Users\radfi>python -m venv C:\Users\radfi\hello_world
+
+C:\Users\radfi>cd hello_world
+
+C:\Users\radfi\hello_world>cd Scripts
+
+C:\Users\radfi\hello_world\Scripts>activate
+
+(hello_world) C:\Users\radfi\hello_world\Scripts>py -38 -m pip install jupyter
+Python 38 not found!
+Installed Pythons found by py Launcher for Windows
+ (venv) *
+ -3.8-32
+ -3.7-64
+
+Requested Python version (38) not installed, use -0 for available pythons
+
+(hello_world) C:\Users\radfi\hello_world\Scripts>py -3 -m pip install jupyter
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: jupyter in c:\users\radfi\appdata\roaming\python\python38\site-packages (1.0.0)
+Requirement already satisfied: nbconvert in c:\users\radfi\appdata\roaming\python\python38\site-packages (from jupyter) (5.6.0)
+Requirement already satisfied: qtconsole in c:\users\radfi\appdata\roaming\python\python38\site-packages (from jupyter) (4.5.5)
+Requirement already satisfied: ipykernel in c:\users\radfi\appdata\roaming\python\python38\site-packages (from jupyter) (5.1.3)
+Requirement already satisfied: jupyter-console in c:\users\radfi\appdata\roaming\python\python38\site-packages (from jupyter) (6.0.0)
+Requirement already satisfied: notebook in c:\users\radfi\appdata\roaming\python\python38\site-packages (from jupyter) (6.0.1)
+Requirement already satisfied: ipywidgets in c:\users\radfi\appdata\roaming\python\python38\site-packages (from jupyter) (7.5.1)
+Requirement already satisfied: nbformat>=4.4 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from nbconvert->jupyter) (4.4.0)
+Requirement already satisfied: pygments in c:\users\radfi\appdata\roaming\python\python38\site-packages (from nbconvert->jupyter) (2.4.2)
+Requirement already satisfied: mistune<2,>=0.8.1 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from nbconvert->jupyter) (0.8.4)
+Requirement already satisfied: pandocfilters>=1.4.1 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from nbconvert->jupyter) (1.4.2)
+Requirement already satisfied: jupyter-core in c:\users\radfi\appdata\roaming\python\python38\site-packages (from nbconvert->jupyter) (4.4.0)
+Requirement already satisfied: jinja2>=2.4 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from nbconvert->jupyter) (2.10.3)
+Requirement already satisfied: defusedxml in c:\users\radfi\appdata\roaming\python\python38\site-packages (from nbconvert->jupyter) (0.6.0)
+Requirement already satisfied: bleach in c:\users\radfi\appdata\roaming\python\python38\site-packages (from nbconvert->jupyter) (3.1.0)
+Requirement already satisfied: testpath in c:\users\radfi\appdata\roaming\python\python38\site-packages (from nbconvert->jupyter) (0.4.2)
+Requirement already satisfied: traitlets>=4.2 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from nbconvert->jupyter) (4.3.3)
+Requirement already satisfied: entrypoints>=0.2.2 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from nbconvert->jupyter) (0.3)
+Requirement already satisfied: jupyter-client>=4.1 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from qtconsole->jupyter) (5.3.1)
+Requirement already satisfied: ipython-genutils in c:\users\radfi\appdata\roaming\python\python38\site-packages (from qtconsole->jupyter) (0.2.0)
+Requirement already satisfied: ipython>=5.0.0 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from ipykernel->jupyter) (7.8.0)
+Requirement already satisfied: tornado>=4.2 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from ipykernel->jupyter) (6.0.3)
+Requirement already satisfied: prompt-toolkit<2.1.0,>=2.0.0 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from jupyter-console->jupyter) (2.0.10)
+Requirement already satisfied: Send2Trash in c:\users\radfi\appdata\roaming\python\python38\site-packages (from notebook->jupyter) (1.5.0)
+Requirement already satisfied: terminado>=0.8.1 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from notebook->jupyter) (0.8.2)
+Requirement already satisfied: pyzmq>=17 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from notebook->jupyter) (18.1.0)
+Requirement already satisfied: prometheus-client in c:\users\radfi\appdata\roaming\python\python38\site-packages (from notebook->jupyter) (0.7.1)
+Requirement already satisfied: widgetsnbextension~=3.5.0 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from ipywidgets->jupyter) (3.5.1)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from nbformat>=4.4->nbconvert->jupyter) (3.1.1)
+Requirement already satisfied: MarkupSafe>=0.23 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from jinja2>=2.4->nbconvert->jupyter) (1.1.1)
+Requirement already satisfied: six>=1.9.0 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from bleach->nbconvert->jupyter) (1.12.0)
+Requirement already satisfied: webencodings in c:\users\radfi\appdata\roaming\python\python38\site-packages (from bleach->nbconvert->jupyter) (0.5.1)
+Requirement already satisfied: decorator in c:\users\radfi\appdata\roaming\python\python38\site-packages (from traitlets>=4.2->nbconvert->jupyter) (4.4.0)
+Requirement already satisfied: python-dateutil>=2.1 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from jupyter-client>=4.1->qtconsole->jupyter) (2.8.0)
+Requirement already satisfied: colorama; sys_platform == "win32" in c:\users\radfi\appdata\roaming\python\python38\site-packages (from ipython>=5.0.0->ipykernel->jupyter) (0.4.3)
+Requirement already satisfied: setuptools>=18.5 in c:\program files (x86)\python38-32\lib\site-packages (from ipython>=5.0.0->ipykernel->jupyter) (47.1.0)
+Requirement already satisfied: pickleshare in c:\users\radfi\appdata\roaming\python\python38\site-packages (from ipython>=5.0.0->ipykernel->jupyter) (0.7.5)
+Requirement already satisfied: jedi>=0.10 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from ipython>=5.0.0->ipykernel->jupyter) (0.15.1)
+Requirement already satisfied: backcall in c:\users\radfi\appdata\roaming\python\python38\site-packages (from ipython>=5.0.0->ipykernel->jupyter) (0.1.0)
+Requirement already satisfied: wcwidth in c:\users\radfi\appdata\roaming\python\python38\site-packages (from prompt-toolkit<2.1.0,>=2.0.0->jupyter-console->jupyter) (0.1.7)
+Requirement already satisfied: pywinpty>=0.5; os_name == "nt" in c:\users\radfi\appdata\roaming\python\python38\site-packages (from terminado>=0.8.1->notebook->jupyter) (0.5.7)
+Requirement already satisfied: attrs>=17.4.0 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.4->nbconvert->jupyter) (19.1.0)
+Requirement already satisfied: pyrsistent>=0.14.0 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.4->nbconvert->jupyter) (0.15.4)
+Requirement already satisfied: importlib-metadata in c:\users\radfi\appdata\roaming\python\python38\site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.4->nbconvert->jupyter) (0.23)
+Requirement already satisfied: parso>=0.5.0 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from jedi>=0.10->ipython>=5.0.0->ipykernel->jupyter) (0.5.1)
+Requirement already satisfied: zipp>=0.5 in c:\users\radfi\appdata\roaming\python\python38\site-packages (from importlib-metadata->jsonschema!=2.5.0,>=2.4->nbformat>=4.4->nbconvert->jupyter) (0.6.0)
+Requirement already satisfied: more-itertools in c:\users\radfi\appdata\roaming\python\python38\site-packages (from zipp>=0.5->importlib-metadata->jsonschema!=2.5.0,>=2.4->nbformat>=4.4->nbconvert->jupyter) (7.2.0)
+WARNING: You are using pip version 20.1.1; however, version 20.2.4 is available.
+You should consider upgrading via the 'C:\Program Files (x86)\Python38-32\python.exe -m pip install --upgrade pip' command.
+
+(hello_world) C:\Users\radfi\hello_world\Scripts>
+(hello_world) C:\Users\radfi\hello_world\Scripts>jupyter notebook
+Traceback (most recent call last):
+  File "c:\program files (x86)\python38-32\lib\runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "c:\program files (x86)\python38-32\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\radfi\AppData\Roaming\Python\Python38\Scripts\jupyter-notebook.EXE\__main__.py", line 7, in <module>
+  File "C:\Users\radfi\AppData\Roaming\Python\Python38\site-packages\jupyter_core\application.py", line 266, in launch_instance
+    return super(JupyterApp, cls).launch_instance(argv=argv, **kwargs)
+  File "C:\Users\radfi\AppData\Roaming\Python\Python38\site-packages\traitlets\config\application.py", line 663, in launch_instance
+    app.initialize(argv)
+  File "<C:\Users\radfi\AppData\Roaming\Python\Python38\site-packages\decorator.py:decorator-gen-7>", line 2, in initialize
+  File "C:\Users\radfi\AppData\Roaming\Python\Python38\site-packages\traitlets\config\application.py", line 87, in catch_config_error
+    return method(app, *args, **kwargs)
+  File "C:\Users\radfi\AppData\Roaming\Python\Python38\site-packages\notebook\notebookapp.py", line 1679, in initialize
+    self.init_webapp()
+  File "C:\Users\radfi\AppData\Roaming\Python\Python38\site-packages\notebook\notebookapp.py", line 1442, in init_webapp
+    self.http_server.listen(port, self.ip)
+  File "C:\Users\radfi\AppData\Roaming\Python\Python38\site-packages\tornado\tcpserver.py", line 152, in listen
+    self.add_sockets(sockets)
+  File "C:\Users\radfi\AppData\Roaming\Python\Python38\site-packages\tornado\tcpserver.py", line 165, in add_sockets
+    self._handlers[sock.fileno()] = add_accept_handler(
+  File "C:\Users\radfi\AppData\Roaming\Python\Python38\site-packages\tornado\netutil.py", line 279, in add_accept_handler
+    io_loop.add_handler(sock, accept_handler, IOLoop.READ)
+  File "C:\Users\radfi\AppData\Roaming\Python\Python38\site-packages\tornado\platform\asyncio.py", line 99, in add_handler
+    self.asyncio_loop.add_reader(fd, self._handle_events, fd, IOLoop.READ)
+  File "c:\program files (x86)\python38-32\lib\asyncio\events.py", line 501, in add_reader
+    raise NotImplementedError
+NotImplementedError
+
+(hello_world) C:\Users\radfi\hello_world\Scripts>deactivate
+C:\Users\radfi\hello_world\Scripts>

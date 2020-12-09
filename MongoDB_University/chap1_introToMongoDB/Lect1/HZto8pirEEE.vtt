@@ -1,0 +1,347 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:00.500
+
+
+2
+00:00:00.500 --> 00:00:01.280
+Hello.
+
+3
+00:00:01.280 --> 00:00:04.360
+In this course, we will review
+a range of MongoDB capabilities
+
+4
+00:00:04.360 --> 00:00:06.100
+using a variety of tools.
+
+5
+00:00:06.100 --> 00:00:08.200
+We hope that using
+these tools will
+
+6
+00:00:08.200 --> 00:00:10.600
+help better visualize
+new concepts
+
+7
+00:00:10.600 --> 00:00:13.970
+and allow you to work with
+data in different ways.
+
+8
+00:00:13.970 --> 00:00:18.550
+Here, we will introduce you to
+MongoDB Atlas, MongoDB Compass,
+
+9
+00:00:18.550 --> 00:00:20.200
+and the Mongo Shell.
+
+10
+00:00:20.200 --> 00:00:23.470
+While we won't dive deeply
+into each of these tools,
+
+11
+00:00:23.470 --> 00:00:25.990
+by the end of the course, you
+will have enough knowledge
+
+12
+00:00:25.990 --> 00:00:29.200
+to continue exploring
+MongoDB either independently
+
+13
+00:00:29.200 --> 00:00:33.010
+or with our other MongoDB
+university courses.
+
+14
+00:00:33.010 --> 00:00:34.930
+Let's start with Atlas.
+
+15
+00:00:34.930 --> 00:00:37.390
+MongoDB Atlas is a platform
+that provides an interface
+
+16
+00:00:37.390 --> 00:00:40.600
+to manage and deploy MongoDB
+across cloud providers
+
+17
+00:00:40.600 --> 00:00:41.930
+and regions.
+
+18
+00:00:41.930 --> 00:00:44.140
+It was built to launch and
+manage your deployments
+
+19
+00:00:44.140 --> 00:00:47.890
+for you, which simplifies the
+operational overhead of running
+
+20
+00:00:47.890 --> 00:00:49.480
+a deployment.
+
+21
+00:00:49.480 --> 00:00:52.460
+This type of offering is
+called database as a service.
+
+22
+00:00:52.460 --> 00:00:55.120
+What that means is that
+Atlas helps you easily
+
+23
+00:00:55.120 --> 00:00:58.120
+setup and manage your database
+from your Atlas account
+
+24
+00:00:58.120 --> 00:00:59.140
+on the web.
+
+25
+00:00:59.140 --> 00:01:01.690
+There are multiple tiers
+of Atlas subscriptions.
+
+26
+00:01:01.690 --> 00:01:04.090
+And for this course, we
+will be using the free tier
+
+27
+00:01:04.090 --> 00:01:08.560
+subscription to set up a
+database, view and modify data.
+
+28
+00:01:08.560 --> 00:01:11.350
+The free tier allows you to
+experiment with the platform
+
+29
+00:01:11.350 --> 00:01:12.820
+at no cost to you.
+
+30
+00:01:12.820 --> 00:01:16.790
+We will cover Atlas in more
+detail later in this chapter.
+
+31
+00:01:16.790 --> 00:01:19.000
+Another tool that will be
+heavily used in this course
+
+32
+00:01:19.000 --> 00:01:20.290
+is called Compass.
+
+33
+00:01:20.290 --> 00:01:22.480
+Compass provides a
+graphical user interface
+
+34
+00:01:22.480 --> 00:01:25.390
+that allows you to explore
+the data in your database.
+
+35
+00:01:25.390 --> 00:01:27.670
+It is a great tool to get
+a quick view of the shape
+
+36
+00:01:27.670 --> 00:01:30.010
+and state of your data,
+as well as test out
+
+37
+00:01:30.010 --> 00:01:32.110
+MongoDB features
+as you are learning
+
+38
+00:01:32.110 --> 00:01:34.750
+about the database
+and its functionality.
+
+39
+00:01:34.750 --> 00:01:37.150
+You can use Compass to
+optimize query performance
+
+40
+00:01:37.150 --> 00:01:39.820
+and manage indexes,
+among other things.
+
+41
+00:01:39.820 --> 00:01:42.070
+The interface that you
+will see on your machine
+
+42
+00:01:42.070 --> 00:01:45.925
+may differ from the one that
+you see in later lectures.
+
+43
+00:01:45.925 --> 00:01:47.800
+There has been a number
+of updates to Compass
+
+44
+00:01:47.800 --> 00:01:49.690
+since those lessons
+were recorded,
+
+45
+00:01:49.690 --> 00:01:52.690
+but all the labs have
+been updated accordingly.
+
+46
+00:01:52.690 --> 00:01:54.590
+Finally, we will
+be using the Mongo
+
+47
+00:01:54.590 --> 00:01:57.460
+Shell, which is an
+interactive JavaScript
+
+48
+00:01:57.460 --> 00:01:59.043
+interface to MongoDB.
+
+49
+00:01:59.043 --> 00:02:00.460
+You do not need
+to know JavaScript
+
+50
+00:02:00.460 --> 00:02:02.080
+to proceed with this course.
+
+51
+00:02:02.080 --> 00:02:05.380
+Here, you will learn how to
+connect your Atlas instance,
+
+52
+00:02:05.380 --> 00:02:08.410
+query and update data
+using the Mongo Shell,
+
+53
+00:02:08.410 --> 00:02:12.260
+as well as import a data set
+into your own Atlas cluster.
+
+54
+00:02:12.260 --> 00:02:14.650
+This is the third and
+last tool that we will use
+
+55
+00:02:14.650 --> 00:02:16.390
+to interact with your database.
+
+56
+00:02:16.390 --> 00:02:19.390
+The Mongo Shell is
+great for playing around
+
+57
+00:02:19.390 --> 00:02:21.850
+with all the features that
+the database has to offer,
+
+58
+00:02:21.850 --> 00:02:23.830
+and really learning
+about MongoDB
+
+59
+00:02:23.830 --> 00:02:26.290
+query language
+and functionality.
+
+60
+00:02:26.290 --> 00:02:28.750
+The following lectures
+and labs in this chapter
+
+61
+00:02:28.750 --> 00:02:30.820
+will walk you through
+installing all three
+
+62
+00:02:30.820 --> 00:02:33.580
+tools that are required
+to complete this course.
+
+63
+00:02:33.580 --> 00:02:35.890
+Please keep in mind that
+some of the lectures
+
+64
+00:02:35.890 --> 00:02:38.530
+may have an outdated
+campus or Atlas interface,
+
+65
+00:02:38.530 --> 00:02:40.910
+or show fewer data
+sets in the database.
+
+66
+00:02:40.910 --> 00:02:42.460
+This will not
+impede your ability
+
+67
+00:02:42.460 --> 00:02:45.280
+to complete the course since
+the labs have been updated
+
+68
+00:02:45.280 --> 00:02:48.610
+accordingly and the tools still
+have the functionality that you
+
+69
+00:02:48.610 --> 00:02:50.350
+will be learning about.
+
+70
+00:02:50.350 --> 00:02:52.060
+Finally, please
+check the lecture
+
+71
+00:02:52.060 --> 00:02:54.130
+notes that are located
+under the videos
+
+72
+00:02:54.130 --> 00:02:57.190
+as you are going through
+the course material.

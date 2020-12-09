@@ -1,0 +1,101 @@
+/*
+
+Date: 2020-10-01
+Description: 
+
+
+*/
+
+db.movies.find({}).skip(201).limit(10).pretty()
+
+db.movies.aggregate([{$group:{ _id: "$title"}}])
+-- ----------------------------------------------------------------------------------------------------------------------------------
+
+
+Lab  3 $unwind
+==============
+
+
+steps 1
+db.movies.aggregate([{ $unwind: "$cast"}])
+-------------------------------------------
+
+
+step 2 - here I want to do a projection for the required fields "First Last" ,Language , 
+
+/* with the _id field excluded */
+
+db.movies.aggregate([
+{$project:{"_id": 0 ,"cast": 1 , "title": 1 , "year":1 }},
+{ $unwind: "$cast"},
+{$sort : {"title":1}} ])
+
+
+
+/* with the _id field visible */
+
+db.movies.aggregate([
+{$project:{"_id": 1 ,"cast": 1 , "title": 1 , "year":1 }},
+{ $unwind: "$cast"},
+{$sort : {"title":1}} ])
+
+
+/* Group by id field */
+
+
+db.movies.aggregate([
+{$project:{"_id": 1 ,"cast": 1 , "title": 1 , "year":1 }},
+{ $unwind: "$cast"},
+{$sort : {"title":1}} ,
+
+{$group: {_id: "$title"}}
+])
+
+
+
+db.movies.aggregate([
+{$project:{"_id": 0 ,"cast": 1 , "title": 1 , "year":1 }},
+{ $unwind: "$cast"},
+{$sort : {"title":1}} ,
+{$group: {_id: "$title" ,count:{$sum:1}}}])
+
+
+/*RTQ - seems I need to group by cast memeber*/
+
+
+db.movies.aggregate([
+{$project:{"_id": 0 ,"cast": 1 , "title": 1 , "year":1 }},
+{ $unwind: "$cast"},
+{$sort : {"title":1}} ,
+{$group: {_id: "$cast" ,count:{$sum:1}}}])
+
+
+/* sort stage */
+
+db.movies.aggregate([
+{$project:{"_id": 0 ,"cast": 1 , "title": 1 , "year":1 }},
+{ $unwind: "$cast"},
+{$sort : {"title":1}} ,
+{$group: {_id: "$cast" ,count:{$sum:1}}},
+{$sort: {"count": -1}}])
+
+
+/* other fields req'd by question */
+
+db.movies.aggregate([
+{$project:{"_id": 0 ,"First Last": {"cast": 1} , "title": 1 , "year":1 }},
+{ $unwind: "$cast"},
+{$sort : {"title":1}} ,
+{$group: {_id: "$cast" ,count:{$sum:1} , average: {$avg:"$count"}}},
+{$sort: {"count": -1}}])
+
+
+db.movies.aggregate([
+{$project:{"_id": 0 ,"cast": 1 , "title": 1 , "year":1 }},
+{ $unwind: "$cast"},
+{$sort : {"title":1}} ,
+{$group: {_id: "$cast" ,count:{$sum:1}}},
+{$sort: {"count": -1}},
+{$group: {average:{$avg:"$count"}}}
+])
+

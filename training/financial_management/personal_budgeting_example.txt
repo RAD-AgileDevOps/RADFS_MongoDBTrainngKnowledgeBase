@@ -1,0 +1,23 @@
+db.MyCollection.find({ $expr: { $lte: [ { $toDouble: "$Price" }, 1000.0 ] } })
+
+db.ecdc_download_20200530.find({"cases":{$lte:"39"}}).limit(5).pretty()
+
+db.ecdc_download_20200530.find({$expr:{$lte: [{ $toInt: "$cases" }, 39 ]} }).limit(5).pretty()
+
+
+db.monthlyBudget.insertMany([{ "_id" : 1, "category" : "food", "budget": 400, "spent": 450 } , 
+{ "_id" : 2, "category" : "drinks", "budget": 100, "spent": 150 },
+{ "_id" : 3, "category" : "clothes", "budget": 100, "spent": 50 },
+{ "_id" : 4, "category" : "misc", "budget": 500, "spent": 300 },
+{ "_id" : 5, "category" : "travel", "budget": 200, "spent": 650 }])
+
+radfs:
+db.monthlyBudget.find({$expr:{$gt:["$budget", "$spent"]}})
+
+
+sample:
+db.monthlyBudget.find( { $expr: { $gt: [ "$spent" , "$budget" ] } } )
+
+ 
+
+db.ecdc_download_20200530.find({$expr:{$lte:[{$toInt:"$cases"},39]}}).limit(5).pretty()

@@ -1,0 +1,333 @@
+# Date 2020-09-13 17:10
+# After a long and arduous day 10:00 to 17:00 I arrived at the solution
+#Below are the attempts to validate my learning
+#At line 222 is the validation and correct mongoDb query to generate the 23 documents as expected
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+db.employees.aggregate([{$match:{imdb.rating:{$gte: 7}}}])
+
+db.articles.aggregate( [
+  { $match: { $or: [ { score: { $gt: 70, $lt: 90 } }, { views: { $gte: 1000 } } ] } },
+  { $group: { _id: null, count: { $sum: 1 } } }
+] );
+
+db.movies.aggregate([{$match:{imdb.rating:{$gte: 7}}
+  }])
+  
+  db.movies.aggregate([{$match:{$gte:{"imdb.rating" , 7}}}])
+  
+  db.movies.aggregate([{$match:{"imdb.rating": {$gte: 7}}}])
+  
+  # --------------------------------------------------------------------
+  genres does not contain "Crime" or "Horror"
+ 
+
+ db.movies.aggregate(
+ 
+				[{$match:{
+				
+					$and:[{"imdb.rating": {$gte: 7}},{$nor:[{"genres":"Crime"},{"genres":"Horror"}]}]
+				
+				}}]
+ 
+ )
+  
+  
+  #rated is either "PG" or "G"
+  
+  
+ db.movies.aggregate(
+ 
+				[{$match:{
+				
+					$and:[{"imdb.rating": {$gte: 7}},{$nor:[{"genres":"Crime"},{"genres":"Horror"}]} ,{$or:[{rated:"PG"}
+					, {rated:"G"}]}]
+				
+				}}]
+ 
+ )
+ 
+ 
+ languages
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ var pipeline = db.movies.aggregate(
+ 
+				[{$match:{
+				
+					$and:[{"imdb.rating": {$gte: 7}},{$nor:[{"genres":"Crime"},{"genres":"Horror"}]} ,{$or:[{rated:"PG"}
+					, {rated:"G"} ]} , {$or:[{"languages":"English" , "languages":"Japanese"}]} ]
+				
+				}}]
+ 
+ )
+ 
+ 
+var  pipeline = $match:{
+				
+					$and:[{"imdb.rating": {$gte: 7}},{$nor:[{"genres":"Crime"},{"genres":"Horror"}]} ,{$or:[{rated:"PG"}
+					, {rated:"G"} ]} , {$and:[{"languages":"English" , "languages":"Japanese"}]} ]
+				
+				}
+ 
+ 
+ 
+ 
+ 
+  
+   var test = $and:[{"imdb.rating": {$gte: 7}},{$nor:[{"genres":"Crime"},{"genres":"Horror"}]} ,{$or:[{rated:"PG"}
+					, {rated:"G"} ]} , {$and:[{"languages":"English" , "languages":"Japanese"}]} ]
+				
+  
+  
+  
+  db.movies.find({$and:[{"imdb.rating": {$gte: 7}},{$nor:[{"genres":"Crime"},{"genres":"Horror"}]} ,{$or:[{rated:"PG"}
+					, {rated:"G"} ]} , {$and:[{"languages":"English" , "languages":"Japanese"}]} ]
+				}).count()
+
+  
+  # --------------------------------------------------------------------------------------------------------------------------
+  
+  Projection
+  
+  
+  db.movies.aggregate(
+ 
+				[{$match:{
+				
+					 $and:[{"imdb.rating": {$gte: 7}},{$nor:[{"genres":"Crime"},{"genres":"Horror"}]} ,{$or:[{"rated":"PG"}
+					, {"rated":"G"} ]} , {$or:[{"languages":"English" , "languages":"Japanese"}]} ]
+				
+				}} , {$project:{_id:0, "imdb.rating":1 , "genres": 1, "rated" :1 , "languages":1}}]
+ 
+ )
+  
+  
+  test = [{$match:{
+				
+					$and:[{"imdb.rating": {$gte: 7}},{$nor:[{"genres":"Crime"},{"genres":"Horror"}]} ,{$or:[{rated:"PG"}
+					, {rated:"G"} ]} , {$or:[{"languages":"English" , "languages":"Japanese"}]} ]
+				
+				}} , {$project:{_id:0, "imdb.rating":1 , "genres": 1 , "rated": 1 , "languages":1}}]
+  
+   db.movies.aggregate(test).itcount()
+   
+    
+  db.movies.aggregate(
+ 
+				[{$match:{
+				
+					 $and:[{"imdb.rating": {$gte: 7}},{$nor:[{"genres":"Crime"},{"genres":"Horror"}]} ,{$or:[{"rated":"PG"}
+					, {"rated":"G"} ]} , {$and:[{"languages":"English" , "languages":"Japanese"}]} ]
+				
+				}} , {$project:{_id:0, "imdb.rating":1 , "genres": 1, "rated" :1 , "languages":1}},
+				
+				{
+    $group: {
+       _id: null,
+       count: { $sum: 1 }
+    }
+  }
+
+				]
+ 
+ )
+ 
+ 
+ 
+ db.movies.find({ $and:[{"imdb.rating": {$gte: 7}},{$nor:[{"genres":"Crime"},{"genres":"Horror"}]} ,{$or:[{"rated":"PG"}
+					, {"rated":"G"} ]} , {$and:[{"languages":"English" , "languages":"Japanese"}]} ]})
+					
+					
+					
+					
+					
+					{$or:[{"languages":"English" , "languages":"Japanese"}]}
+					
+					
+					
+
+  db.movies.aggregate(
+ 
+				[{$match:{
+				
+					 $and:[{"imdb.rating": {$gte: 7}},{$nor:[{"genres":"Crime"},{"genres":"Horror"}]} ,{$or:[{"rated":"PG"}
+					, {"rated":"G"} ]} , {"languages":{$all:["English" ,"Japanese" ]}} ]
+				
+				}} , {$project:{_id:0, "imdb.rating":1 , "genres": 1, "rated" :1 , "languages":1}}]
+ 
+ )
+ 
+ 
+ 
+ # summarization 
+ 
+ 
+ 
+  db.movies.aggregate(
+ 
+				[{$match:{
+				
+					 $and:[{"imdb.rating": {$gte: 7}},{$nor:[{"genres":"Crime"},{"genres":"Horror"}]} ,{$or:[{"rated":"PG"}
+					, {"rated":"G"} ]} , {"languages":{$all:["English" ,"Japanese" ]}} ]
+				
+				}} , {$project:{_id:0, "imdb.rating":1 , "genres": 1, "rated" :1 , "languages":1}}
+				
+				]
+ 
+ )
+ 
+ 
+ 
+ 
+ 
+ #==========================================================================================================================================================
+ #2020-09-13 17:06
+ # Final Solution - after a long and arduous research and mental effort I arrived at the code that generated the expected results
+ 
+ 
+ 
+ var pipeline = [{$match:{
+				
+					 $and:[{"imdb.rating": {$gte: 7}},{$nor:[{"genres":"Crime"},{"genres":"Horror"}]} ,{$or:[{"rated":"PG"}
+					, {"rated":"G"} ]} , {"languages":{$all:["English" ,"Japanese" ]}} ]
+				
+				}} , {$project:{_id:0, "imdb.rating":1 , "genres": 1, "rated" :1 , "languages":1}}
+				
+				]
+				
+				
+validation: 
+
+@(shell):1:1
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> var pipeline = [{$match:{
+...
+...  $and:[{"imdb.rating": {$gte: 7}},{$nor:[{"genres":"Crime"},{"genres":"Horror"}]} ,{$or:[{"rated":"PG"}
+... , {"rated":"G"} ]} , {"languages":{$all:["English" ,"Japanese" ]}} ]
+...
+... }} , {$project:{_id:0, "imdb.rating":1 , "genres": 1, "rated" :1 , "languages":1}}
+...
+... ]
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> db.movies.aggregate(pipeline).itcount()
+23
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> load('validateLab1.js')
+true
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> validateLab1(pipeline)
+Answer is 15
+MongoDB Enterprise Cluster0-shard-0:PRIMARY>
+
+
+
+# using the above mongDB query I just have to select the correct fileds - using $project:
+#2020-09-13  18:03
+
+
+ var pipeline = [{$match:{
+				
+					 $and:[{"imdb.rating": {$gte: 7}},{$nor:[{"genres":"Crime"},{"genres":"Horror"}]} ,{$or:[{"rated":"PG"}
+					, {"rated":"G"} ]} , {"languages":{$all:["English" ,"Japanese" ]}} ]
+				
+				}} , {$project:{_id:0, "title":1 ,  "rated" :1 }}
+				
+				]
+	
+
+
+Lab - Computing Fields
+
+
+db.movies.aggregate([...]).itcount()
+
+db.movies.aggregate([{$project:{ $split: ["title", ""] }}]).itcount();
+
+db.deliveries.aggregate([
+  { $project : { city_state : { $split: ["$city", ", "] }, qty : 1 } }
+  
+]);
+
+
+db.movies.aggregate([{$project:{ $split: ["$title", ""] }}]).itcount()
+
+
+
+db.movies.aggregate([
+  { $project : { title_split : { $split: ["$title", " "] }, qty : 1 } },
+  
+  
+]);
+
+
+
+db.movies.aggregate([
+  { $project : { title_split : { $split: ["$title", " "] }, qty : 1 } 
+  
+  }
+  
+  
+]);
+
+
+
+
+db.inventory.aggregate([
+   {
+      $project: {
+         item: 1,
+         numberOfColors: { $cond: { if: { $isArray: "$colors" }, then: { $size: "$colors" }, else: "NA"} }
+      }
+   }
+] )
+
+
+
+db.movies.aggregate([
+  { $project : { title_split : { $split: ["$title", " "] }, qty : 1 , {$size: title_split} } , 
+  
+  }
+  
+  
+]);
+
+{ $size: "$colors" }
+
+db.movies.aggregate([
+  { $project : { title_split : { $split: ["$title", " "] }  , poc:{$size: { $split: ["$title", " "] } }} , 
+  
+  }
+  
+  
+]);
+
+
+
+
+db.movies.aggregate([
+  { $project : { title_split : { $split: ["$title", " "] }  , poc:{$size: { $split: ["$title", " "] } }} , $match:{poc:{$eq:1}}
+  
+  }
+  
+  
+]);
+

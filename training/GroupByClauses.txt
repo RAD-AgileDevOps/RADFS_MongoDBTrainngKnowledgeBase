@@ -1,0 +1,20 @@
+db.col_ecdcCOVID19_20200627.aggregate(
+  [
+    // First Stage
+    {
+      $group :
+        {
+          _id : "$countriesAndTerritories"
+          
+        }
+     },
+     // Second Stage
+     {
+       $match: {{"countriesAndTerritories":"Uzbekistan"}}
+     }
+   ]
+ )
+ 
+  db.col_ecdcCOVID19_20200627.aggregate( [ { $group : { _id : "$countriesAndTerritories" } } ] )
+  
+  

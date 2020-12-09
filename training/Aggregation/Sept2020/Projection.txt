@@ -1,0 +1,33 @@
+ db.users.insertMany([{
+  _id : "jane",
+  joined : ISODate("2011-03-02"),
+  likes : ["golf", "racquetball"]
+} , 
+{
+  _id : "joe",
+  joined : ISODate("2012-07-02"),
+  likes : ["tennis", "golf", "swimming"]
+} ])
+
+
+db.users.aggregate( {[
+	{$project:{name:{$toUpper: "$_id"} , _id:0}} , 
+	{$sort: {name:1}}
+])
+
+
+db.users.aggregate([{$project:{
+				month_joined : { $month : "$joined"} , 
+				name : "$_id" , 
+				_id : 0}},{$sort: {month_joined: 1}}])
+
+db.users.aggregate(
+  [
+    { $project :
+       {
+         month_joined : { $month : "$joined" },
+         name : "$_id",
+         _id : 0 }},
+    { $sort : { month_joined : 1 } }
+  ]
+)

@@ -1,0 +1,3 @@
+db.movies.aggregate([{
+	$project: {_id:0 , hi ghest_rating:{$max: "$imdb.rating"}, lowest_rating: {$min: "$imdb.rating"}}
+}])

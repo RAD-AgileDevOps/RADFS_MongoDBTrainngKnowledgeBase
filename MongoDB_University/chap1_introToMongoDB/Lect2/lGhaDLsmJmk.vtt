@@ -1,0 +1,435 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:00.830
+
+
+2
+00:00:00.830 --> 00:00:03.860
+In this lesson, we'll
+talk about Atlas.
+
+3
+00:00:03.860 --> 00:00:06.600
+You'll learn what Atlas
+is, what it's used for,
+
+4
+00:00:06.600 --> 00:00:09.050
+and take a look at
+the Atlas interface.
+
+5
+00:00:09.050 --> 00:00:12.810
+Atlas is MongoDB's database
+as a service solution.
+
+6
+00:00:12.810 --> 00:00:15.770
+It provides functionality to set
+up your database in the cloud
+
+7
+00:00:15.770 --> 00:00:18.170
+without needing to configure
+the fine details yourself
+
+8
+00:00:18.170 --> 00:00:20.940
+manually using the Shell.
+
+9
+00:00:20.940 --> 00:00:23.280
+Atlas also handles
+replication, which
+
+10
+00:00:23.280 --> 00:00:26.340
+means your database maintains
+redundant copies of data
+
+11
+00:00:26.340 --> 00:00:28.660
+to increase availability.
+
+12
+00:00:28.660 --> 00:00:31.560
+Let's talk a little bit
+about how Atlas works.
+
+13
+00:00:31.560 --> 00:00:33.720
+Atlas users can
+deploy clusters, which
+
+14
+00:00:33.720 --> 00:00:36.650
+are groups of servers
+that store your data.
+
+15
+00:00:36.650 --> 00:00:38.150
+These servers are
+configured in what
+
+16
+00:00:38.150 --> 00:00:41.330
+we call a replica set, which
+is a cluster where each server
+
+17
+00:00:41.330 --> 00:00:43.480
+stores the same data.
+
+18
+00:00:43.480 --> 00:00:46.800
+This means that each time you
+insert or update a document,
+
+19
+00:00:46.800 --> 00:00:49.840
+redundant copies are
+stored within the set.
+
+20
+00:00:49.840 --> 00:00:52.450
+Using a replica set ensures
+that if you lose access
+
+21
+00:00:52.450 --> 00:00:54.430
+to a server in
+your cluster you're
+
+22
+00:00:54.430 --> 00:00:56.350
+not going to lose your data.
+
+23
+00:00:56.350 --> 00:00:57.790
+All of the servers
+in your cluster
+
+24
+00:00:57.790 --> 00:00:59.620
+exist in the cloud
+on the cloud service
+
+25
+00:00:59.620 --> 00:01:01.850
+provider of your choice.
+
+26
+00:01:01.850 --> 00:01:03.640
+So why should we use Atlas?
+
+27
+00:01:03.640 --> 00:01:06.460
+One main reason is the
+simplicity of setup.
+
+28
+00:01:06.460 --> 00:01:09.820
+Atlas manages the details of
+creating clusters for you,
+
+29
+00:01:09.820 --> 00:01:12.460
+which simplifies the
+operational overhead of running
+
+30
+00:01:12.460 --> 00:01:14.110
+a deployment.
+
+31
+00:01:14.110 --> 00:01:15.760
+The Atlas interface
+makes it easier
+
+32
+00:01:15.760 --> 00:01:19.060
+to manage and deploy MongoDB
+across cloud providers
+
+33
+00:01:19.060 --> 00:01:20.840
+and regions.
+
+34
+00:01:20.840 --> 00:01:23.840
+Atlas is also a great way to
+experiment with new MongoDB
+
+35
+00:01:23.840 --> 00:01:25.940
+tools and features.
+
+36
+00:01:25.940 --> 00:01:28.700
+In this course, you'll connect
+to an existing Atlas cluster
+
+37
+00:01:28.700 --> 00:01:30.540
+and query its data.
+
+38
+00:01:30.540 --> 00:01:32.470
+You'll also create
+your own Atlas cluster
+
+39
+00:01:32.470 --> 00:01:34.070
+and practice
+inserting and updating
+
+40
+00:01:34.070 --> 00:01:36.410
+documents in your database.
+
+41
+00:01:36.410 --> 00:01:38.660
+You'll learn how to connect
+to Atlas outside the Atlas
+
+42
+00:01:38.660 --> 00:01:41.510
+interface using compass,
+which is a graphical user
+
+43
+00:01:41.510 --> 00:01:45.130
+interface for MongoDB
+and the Mongo Shell.
+
+44
+00:01:45.130 --> 00:01:46.570
+Atlas has different
+pricing levels
+
+45
+00:01:46.570 --> 00:01:49.960
+depending upon the size
+and usage of your database.
+
+46
+00:01:49.960 --> 00:01:52.820
+In this course, we'll be
+using the Atlas free tier,
+
+47
+00:01:52.820 --> 00:01:55.690
+which allows you to deploy
+a free tier cluster.
+
+48
+00:01:55.690 --> 00:01:58.540
+A free cluster is a
+three server replica set
+
+49
+00:01:58.540 --> 00:02:01.360
+with 512 megabytes of storage.
+
+50
+00:02:01.360 --> 00:02:03.605
+Free tier clusters never expire.
+
+51
+00:02:03.605 --> 00:02:05.230
+Under the free tier,
+you'll have access
+
+52
+00:02:05.230 --> 00:02:08.590
+to a subset of Atlas features
+like Charts and Stitch,
+
+53
+00:02:08.590 --> 00:02:11.240
+which we'll discuss
+later in this lesson.
+
+54
+00:02:11.240 --> 00:02:12.910
+If you're learning
+how to use MongoDB
+
+55
+00:02:12.910 --> 00:02:14.890
+or creating a small
+scale application,
+
+56
+00:02:14.890 --> 00:02:18.410
+the free tier is a great
+option for storing your data.
+
+57
+00:02:18.410 --> 00:02:21.040
+Now that we know what Atlas is
+let's take a look at the Atlas
+
+58
+00:02:21.040 --> 00:02:22.242
+interface.
+
+59
+00:02:22.242 --> 00:02:23.950
+Note that the interface
+might be a little
+
+60
+00:02:23.950 --> 00:02:26.710
+different in other lessons, but
+the features we'll talk about
+
+61
+00:02:26.710 --> 00:02:28.600
+should be the same.
+
+62
+00:02:28.600 --> 00:02:31.560
+The main Atlas page shows
+all of your clusters.
+
+63
+00:02:31.560 --> 00:02:34.230
+We can take a look at the data
+in our cluster using the Data
+
+64
+00:02:34.230 --> 00:02:37.740
+Explorer by clicking
+the collections button.
+
+65
+00:02:37.740 --> 00:02:39.600
+Here, we can see
+all of the documents
+
+66
+00:02:39.600 --> 00:02:43.110
+within our databases and
+search for specific documents.
+
+67
+00:02:43.110 --> 00:02:44.610
+We'll learn more
+about how to filter
+
+68
+00:02:44.610 --> 00:02:47.080
+our data in the next chapter.
+
+69
+00:02:47.080 --> 00:02:50.500
+Atlas also integrates with
+several MongoDB services.
+
+70
+00:02:50.500 --> 00:02:52.690
+These features are beyond
+the scope of this course,
+
+71
+00:02:52.690 --> 00:02:55.720
+but you can explore them as
+you learn more about MongoDB.
+
+72
+00:02:55.720 --> 00:02:58.360
+You can use the Atlas interface
+to connect your cluster
+
+73
+00:02:58.360 --> 00:03:00.430
+with MongoDB Stitch.
+
+74
+00:03:00.430 --> 00:03:02.200
+Stitch is a serverless
+platform that
+
+75
+00:03:02.200 --> 00:03:04.450
+makes it easier to use
+MongoDB and your web
+
+76
+00:03:04.450 --> 00:03:06.740
+in mobile applications.
+
+77
+00:03:06.740 --> 00:03:09.950
+The Charts feature allows you
+to create visual representations
+
+78
+00:03:09.950 --> 00:03:11.480
+of your data.
+
+79
+00:03:11.480 --> 00:03:13.760
+Atlas also allows you
+to configure users
+
+80
+00:03:13.760 --> 00:03:16.590
+with different privileges
+levels in your database.
+
+81
+00:03:16.590 --> 00:03:19.250
+This is important, because
+as your database grows larger
+
+82
+00:03:19.250 --> 00:03:23.000
+you'll want to control
+the data users can access.
+
+83
+00:03:23.000 --> 00:03:25.430
+Let's recap what we
+learned in this lesson.
+
+84
+00:03:25.430 --> 00:03:28.040
+We defined Atlas as a
+database as a service
+
+85
+00:03:28.040 --> 00:03:31.815
+that helps you deploy and
+manage MongoDB clusters.
+
+86
+00:03:31.815 --> 00:03:33.190
+We learned about
+how Atlas stores
+
+87
+00:03:33.190 --> 00:03:37.440
+data in the cloud in replica
+sets to increase availability,
+
+88
+00:03:37.440 --> 00:03:39.310
+and we looked at some
+of Atlas's feature
+
+89
+00:03:39.310 --> 00:03:42.100
+like the Data Explorer, which
+we'll use in this course,
+
+90
+00:03:42.100 --> 00:03:44.200
+and Stitch and Charts,
+which are beyond the scope
+
+91
+00:03:44.200 --> 00:03:46.020
+of this course.

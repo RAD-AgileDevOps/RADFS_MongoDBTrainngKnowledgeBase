@@ -1,0 +1,13 @@
+Q 5
+
+db.cities.findOne()
+{
+"_id": 10,
+"city": "San Diego",
+"region": "CA",
+"country": "USA",
+"sunnydays": [220, 232, 205, 211, 242, 270]
+}
+
+
+

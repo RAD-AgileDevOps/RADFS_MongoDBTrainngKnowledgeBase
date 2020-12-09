@@ -1,0 +1,294 @@
+db.mflix.aggregate([{$match:{"cast": [
+  "Sandra Bullock",
+  "Tom Hanks",
+  "Julia Roberts",
+  "Kevin Spacey",
+  "George Clooney"]} }])
+  
+  
+  db.movies.aggregate([{$match:{"cast":{$all: "Sandra Bullock",
+  "Tom Hanks",
+  "	",
+  "Kevin Spacey",
+  "George Clooney"} }}])
+  
+  db.inventory.find( { tags: { $all: ["red", "blank"] } } )
+  
+    db.movies.aggregate([{$match: {"countries":"USA" , "tomatoes.viewer.rating":{$gte:3} , "cast": {$all:["Sandra Bullock", 
+   "Tom Hanks" ,"Julia Roberts","Kevin Spacey" ,"George Clooney"   ]}}} , {$count:"num_favs"}])
+   
+    db.movies.aggregate([{$match: {"cast":{$all:[ "Sandra Bullock",
+  "Tom Hanks",
+  "Julia Roberts",
+  "Kevin Spacey",
+  "George Clooney"]} ,
+	
+	"countries":"USA" , "tomatoes.viewer.rating":{$gte:3}}} , {$count:"num_favs"}])
+	
+	
+	
+	db.movies.aggregate([{$match: {"countries":"USA" , "tomatoes.viewer.rating":{$gte:3} , "cast": {$in:["Sandra Bullock",  "Tom Hanks" ,
+	"Julia Roberts",
+  "Kevin Spacey",
+  "George Clooney"]}}} , {$count:"num_favs"}])
+  
+  
+  
+  
+  
+  db.movies.aggregate([{$match: {"countries":"USA" , "tomatoes.viewer.rating":{$gte:3} , "cast": {$in:["Sandra Bullock",  "Tom Hanks" ,
+	"Julia Roberts",
+  "Kevin Spacey",
+  "George Clooney"]}}} ,{ $addFields:{"num_favs":{$count:"cast"}} } ])
+  
+  
+  
+  
+  
+	db.movies.aggregate([{$match: {"countries":"USA" , "tomatoes.viewer.rating":{$gte:3} , "cast": {$in:["Sandra Bullock",  "Tom Hanks" ,
+	"Julia Roberts",
+  "Kevin Spacey",
+  "George Clooney"]}}} , {$count:"num_favs"}])
+  --------------------------------------------------------
+  2020-09-26 08:10
+  After a long time since late last night, I have managed to make some inroads into aggregation in the Lab2 question
+  
+	db.movies.aggregate([{$match: {"countries":"USA" , "tomatoes.viewer.rating":{$gte:3} , "cast": {$in:["Sandra Bullock",  "Tom Hanks" ,
+	"Julia Roberts",
+  "Kevin Spacey",
+  "George Clooney"]}}} ,
+  
+  
+  {
+  
+  $addFields:{"num_favs":{$size:"$cast"}}
+	
+  }
+  
+  ])
+  
+  
+  db.movies.aggregate([{$match: {"countries":"USA" , "tomatoes.viewer.rating":{$gte:3} , "cast": {$in:["Sandra Bullock",  "Tom Hanks" ,
+	"Julia Roberts",
+  "Kevin Spacey",
+  "George Clooney"]}}} ,
+  
+  
+  {
+  
+  $addFields:{"num_favs":{$size:"$cast"}}
+	
+  },
+  
+  {
+	$sort:{num_favs:-1 , "tomatoes.viewer.rating": -1 , title: -1}
+  
+  } ,
+  
+  {
+  
+	$limit: 25
+  }
+  
+  ])
+  
+  
+  db.movies.aggregate([{$match: {"countries":"USA" , "tomatoes.viewer.rating":{$gte:3} , "cast": {$in:["Sandra Bullock",  "Tom Hanks" ,
+	"Julia Roberts",
+  "Kevin Spacey",
+  "George Clooney"]}}} ,
+  
+  
+  {
+  
+  $addFields:{"num_favs":{$size:"$cast"}}
+	
+  },
+  
+  {
+	$sort:{num_favs:-1 , "tomatoes.viewer.rating": -1 , title: -1}
+  
+  } ,
+  
+  {
+  
+	$limit: 25
+  }
+  
+  ])
+  
+  db.movies.aggregate([{$match: {"countries":"USA" , "tomatoes.viewer.rating":{$gte:3} , "cast": {$or:[{"cast", "Sandra Bullock"},  {"cast", "Tom Hanks"} ,
+	{"cast", "Julia Roberts"},
+  {"cast", "Kevin Spacey"},
+  {"cast", "George Clooney"}]}}} ,
+  
+  
+  {
+  
+  $addFields:{"num_favs":{$size:"$cast"}}
+	
+  },
+  
+  {
+	$sort:{num_favs:-1 , "tomatoes.viewer.rating": -1 , title: -1}
+  
+  } ,
+  
+  {
+  
+	$limit: 25
+  }
+  
+  ])
+# -------------------------------------------------------------------------------------------------------------------------------------  
+#placing a $eq command here as server returning an error
+#MongoDB Enterprise Cluster0-shard-0:PRIMARY>   db.movies.aggregate([{$match: {"countries":"USA" , "tomatoes.viewer.rating":{$gte:3} , "cast": {$or:[{"cast", "Sandra Bullock"},  {"cast", "Tom Hanks"} ,
+... {"cast", "Julia Roberts"},
+...   {"cast", "Kevin Spacey"},
+...   {"cast", "George Clooney"}]}}} ,
+...
+...
+...   {
+...
+...   $addFields:{"num_favs":{$size:"$cast"}}
+...
+...   },
+...
+...   {
+... $sort:{num_favs:-1 , "tomatoes.viewer.rating": -1 , title: -1}
+...
+...   } ,
+...
+...   {
+...
+... $limit: 25
+...   }
+...
+...   ])
+2020-09-26T09:45:45.709-0400 E  QUERY    [js] SyntaxError: missing : after property id :
+@(shell):1:108
+MongoDB
+
+# -----------------------------------------------------------------------------------------------------------------------
+
+ 
+   db.movies.aggregate([{$match: {"countries":"USA" , "tomatoes.viewer.rating":{$gte:3} , "cast": {$or:[{$eq:["cast", "Sandra Bullock"]},  {$eq:["cast", "Tom Hanks"]} ,
+	{$eq:["cast", "Julia Roberts"]},
+  {$eq:["cast", "Kevin Spacey"]},
+  {$eq:["cast", "George Clooney"]]}]}}} ,
+  
+  
+  {
+  
+  $addFields:{"num_favs":{$size:"$cast"}}
+	
+  },
+  
+  {
+	$sort:{num_favs:-1 , "tomatoes.viewer.rating": -1 , title: -1}
+  
+  } ,
+  
+  {
+  
+	$limit: 25
+  }
+  
+  ])
+  
+  
+ ############################################################## trial again ############################################
+ 
+ I need to come to terms with the syntax
+ 
+ 
+ 
+ 	db.movies.aggregate([{$match: {"countries":"USA" , "tomatoes.viewer.rating":{$gte:3} , "cast": {$in:["Sandra Bullock",  "Tom Hanks" ,
+	"Julia Roberts",
+  "Kevin Spacey",
+  "George Clooney"]}}} ,
+  
+  
+  {
+  
+  $addFields:{"num_favs":{$size:"$cast"}}
+	
+  }
+  
+  ])
+  
+  
+  db.movies.aggregate([{$match: {"countries":"USA" , "tomatoes.viewer.rating":{$gte:3} , "cast_": {$or:[ {$eq:["cast","Sandra Bullock"]},{$eq:["cast","Tom Hanks" ]}]}}} ,
+  
+  
+  {
+  
+  $addFields:{"num_favs":{$size:"$cast"}}
+	
+  },
+  
+  {
+	$sort:{num_favs:-1 , "tomatoes.viewer.rating": -1 , title: -1}
+  
+  } ,
+  
+  {
+  
+	$limit: 25
+  }
+  
+  ])
+  
+  
+ # seems that I have to do a 'projection'
+ # 2020-09-26 10:17 am
+ 
+ 
+ 
+ 
+ 
+  db.movies.aggregate([{$match: {"countries":"USA" , "tomatoes.viewer.rating":{$gte:3} ,cast:{$in:["Sandra Bullock","Tom Hanks" , "Julia Roberts", "Kevin Spacey", "George Clooney"]}}} ,
+  
+  
+  {
+  
+  $addFields:{"num_favs":{$size:"$cast"}}
+	
+  },
+  
+  {
+	$sort:{num_favs:-1 , "tomatoes.viewer.rating": -1 , title: -1}
+  
+  } ,
+  
+  {
+  
+	$limit: 25 
+  }
+  
+  ])
+  
+  
+  db.movies.aggregate([ {
+  $match: { "cast": {$in:["Sandra Bullock",  "Tom Hanks" ,
+	"Julia Roberts",
+  "Kevin Spacey",
+  "George Clooney"]}}
+  } 
+  
+  ,{ $project: {demo:"$cast"}}   
+  
+  
+])
+
+db.movies.aggregate([ {
+  $match: { "cast":"Sandra Bullock"}
+  } 
+  
+  ,{ $project: {demo:"$cast"}} ,
+
+{
+	$count: "cast"  
+  }
+  
+])

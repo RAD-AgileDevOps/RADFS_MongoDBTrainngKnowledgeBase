@@ -1,0 +1,7 @@
+{"tripduration" : {$and:[{"$gte":60} , {$lt:65}]}}
+
+
+{$and:[{"tripduration":{"$gte":60}} , {"tripduration":{$lt:65}]}}
+
+ { $and: [ { tripduration: { $gte: 60 } }, { tripduration: { $lt:65 } } ] } 
+

@@ -1,0 +1,12 @@
+db.stringToDateDataTypeDemo.find().forEach(function(data){
+  data.ShippingDate= ISODate(data.ShippingDate);
+
+db.stringToDateDataTypeDemo.save(data);});
+
+
+
+db.ecdc_download_20200531.find().forEach(function(data){
+  data.dateRep= ISODate(data.dateRep);
+
+db.ecdc_download_20200531.save(data);});
+

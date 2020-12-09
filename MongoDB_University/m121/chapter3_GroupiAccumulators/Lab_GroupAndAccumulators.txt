@@ -1,0 +1,140 @@
+db.movies.aggregate([
+	{$match: {awards: "/Won /"}},
+	{$project :{highest_rating: {$max:"$imdb.rating"}}} ,
+	$group: {_id = null}
+])
+
+
+trial:
+
+succes test in mongo shell:
+db.movies.aggregate([{ $match: {awards: /Won /}}])
+
+
+
+Variants till build up to solution:
+
+db.movies.aggregate([
+	{$match: {awards: /Won /}},
+	{$project :{highest_rating: {$max:"imdb.rating"}}}])
+
+					resultset:
+						MongoDB Enterprise Cluster0-shard-0:PRIMARY> db.movies.aggregate([
+					... {$match: {awards: /Won /}},
+					... {$project :{highest_rating: {$max:"imdb.rating"}}}])
+					{ "_id" : ObjectId("573a1391f29313caabcd88d8"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd8945"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd89aa"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd8b94"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd8cef"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd8e26"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd8e90"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd8e8f"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd8f66"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd91b4"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd91d7"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd9264"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd9336"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd9596"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd95ee"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd95f6"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1391f29313caabcd9688"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1392f29313caabcd9871"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1392f29313caabcd987c"), "highest_rating" : "imdb.rating" }
+					{ "_id" : ObjectId("573a1392f29313caabcd98c3"), "highest_rating" : "imdb.rating" }
+
+		Not what I was expecting
+
+
+
+2nd attempt:
+worked with '$' prefix on 'imdb.rating'
+db.movies.aggregate([
+	{$match: {awards: /Won /}},
+	{$project :{highest_rating: {$max:"$imdb.rating"}}}])
+
+	
+	
+	3rd attempt:
+db.movies.aggregate([
+	{$match: {awards: /Won /}},
+	{$project :{_id:0 , highest_rating: {$max:"$imdb.rating"} , lowest_rating: {$min:"$imdb.rating"} }}])
+	
+	
+
+	4th attempt:
+db.movies.aggregate([
+	{$match: {awards: /Won /}},
+	{$project :{_id:0 , highest_rating: {$max:"$imdb.rating"} , lowest_rating: {$min:"$imdb.rating"} }} ,
+	{$group: {_id : "$title"}}])
+	
+
+
+
+	5th attempt: succes in this iteration
+db.movies.aggregate([
+	{$match: {awards: /Won /}},
+	
+	{$group: {_id:0 , highest_rating: {$max:"$imdb.rating"} , lowest_rating: {$min:"$imdb.rating"} }}])
+	
+
+
+6th attempt - including std deviation(sample)
+
+db.movies.aggregate([
+	{$match: {awards: /Won 13/}},
+	
+	{$group: {_id:0 , highest_rating: {$max:"$imdb.rating"} , lowest_rating: {$min:"$imdb.rating"} , average_rating:{$avg:"$imdb.rating"}
+					, deviation: { $stdDevSamp: "$imdb.rating" }}}])
+	
+
+	
+7th attempt:
+
+db.movies.aggregate([
+	{$match: {awards:{$regex:/Won 1/}}} , 
+	
+	{$group: {_id:0 , highest_rating: {$max:"$imdb.rating"} , lowest_rating: {$min:"$imdb.rating"} , average_rating:{$avg:"$imdb.rating"}
+					, deviation: { $stdDevSamp: "$imdb.rating" }}}])
+	
+
+	
+8th attempt:
+
+	db.movies.aggregate([
+		{$match: {$or:[{awards:{$regex:/Won 1/}},{awards:{$regex:/Won 13/}}]}} ,
+		
+		{$group: {_id:0 , highest_rating: {$max:"$imdb.rating"} , lowest_rating: {$min:"$imdb.rating"} , average_rating:{$avg:"$imdb.rating"}
+						, deviation: { $stdDevSamp: "$imdb.rating" }}}])
+	
+
+	
+
+9th attempt:
+
+db.movies.aggregate([
+	{$match: {awards:{$regex:/Won /}}} , 
+	
+	{$group: {_id:0 , highest_rating: {$max:"$imdb.rating"} , lowest_rating: {$min:"$imdb.rating"} , average_rating:{$avg:"$imdb.rating"}
+					, deviation: { $stdDevSamp: "$imdb.rating" }}}])
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Lab UNWIND
+
+
+
+	

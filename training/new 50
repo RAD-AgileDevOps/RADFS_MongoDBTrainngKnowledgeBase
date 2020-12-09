@@ -1,0 +1,1 @@
+db.col_ecdcCOVID19_20200622.find({$and:[{"geoId":"TT"} ,{"cases":{$ne:0}}]}, {"cases":1 , "deaths":1 , "geoId":1, "_id": 0}).skip(23).limit(5).pretty()

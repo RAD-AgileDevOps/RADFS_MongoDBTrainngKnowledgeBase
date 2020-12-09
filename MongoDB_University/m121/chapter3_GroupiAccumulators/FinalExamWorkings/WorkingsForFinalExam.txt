@@ -1,0 +1,47 @@
+var pipeline = [{"$project": {
+		"surname": {"$arrayElemAt": [{"$split":[ 
+		"$name" , " "] } , 1]} , "name_size": { "$add" : [{"$strLenCP": "$name"}, -1]} , "name": 1	}},
+			{"$group": {
+					"_id": "$name_size",
+					"word": {"$addToSet": {"$substr":
+					 [{"$toUpper":"$name"}, 3, 2]} },
+					 "names": {"$push": "$surname"}	
+					 }
+					 },{"$sort":{"_id": -1}}]
+					 
+ db.people.aggregate(pipeline)
+ 
+ 
+ 
+ 
+ solution:
+ 
+ MongoDB Enterprise >  db.people.aggregate(pipeline)
+{ "_id" : 13, "word" : [ "NC" ], "names" : [ "Miller" ] }
+{ "_id" : 12, "word" : [ "BE" ], "names" : [ "Mason" ] }
+{ "_id" : 11, "word" : [ "DA", "SE", "NI", "SI" ], "names" : [ "Pope", "Yates", "Jordan", "Fuller" ] }
+{ "_id" : 10, "word" : [ "C ", "CE" ], "names" : [ "Malone", "Payne" ] }
+{ "_id" : 9, "word" : [ "N " ], "names" : [ "White" ] }
+{ "_id" : 8, "word" : [ " P" ], "names" : [ "Perez" ] }
+MongoDB Enterprise >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

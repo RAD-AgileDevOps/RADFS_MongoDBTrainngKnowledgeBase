@@ -1,0 +1,6 @@
+{
+  "tests/test_delete_comments.py::test_add_comment_should_be_implemented": true,
+  "tests/test_delete_comments.py::test_delete_comment_should_delete_if_email_is_owner": true,
+  "tests/test_error_handling.py::test_no_error": true,
+  "tests/test_timeouts.py::test_proper_type": true
+}

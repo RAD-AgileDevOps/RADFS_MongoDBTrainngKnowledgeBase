@@ -1,0 +1,26 @@
+db.movies.aggregate([
+
+
+{$project: { "countries" : 1 , "imdb.rating" : 1 , "imdb.votes" : 1 ,"released": 1}
+
+
+}])
+
+
+db.movies.aggregate([{$project: { "countries" : 1 , "imdb.rating" : 1 , "imdb.votes" : 1 ,"released": 1}}])
+
+13:51
+# Now adding filtering - $match
+db.movies.aggregate([{$project: { "countries" : 1 , "imdb.rating" : 1 , "imdb.votes" : 1 ,"released": 1}} ,
+{$match:{"countries": {$in:["English", "USA"  , "Canada", "UK" , "United Kingdom","Britain"]} , "imdb.votes": {$gte:1} , "imdb.rating": {$gte:1}
+
+}}])
+
+
+v2
+
+db.movies.aggregate([{$project: { "countries" : 1 , "imdb.rating" : 1 , "imdb.votes" : 1 ,"released": 1 , year_:{$year:"$released"}}} ,
+{$match:{"countries": {$in:["English", "USA"  , "Canada", "UK" , "United Kingdom","Britain"]} , 
+"imdb.votes": {$gte:1} , "imdb.rating": {$gte:1} , "year_": {$gte : 1990}
+
+}}])
